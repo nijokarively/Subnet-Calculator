@@ -1,3 +1,11 @@
 ion-content ion-toolbar {
   --background: translucent;
 }
+
+.center-content {
+  text-align: center !important;
+}
+
+.center-content ion-button {
+  margin: 0 auto !important;
+}
