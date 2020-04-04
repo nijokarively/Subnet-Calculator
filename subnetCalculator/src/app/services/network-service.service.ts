@@ -62,6 +62,18 @@ export class NetworkService {
     return this.subnets;
   }
 
+  getSubnetByCidr(cidr) {
+    return this.subnets.find(el => el.cidr == cidr);
+  }
+
+  getSubnetByNetmask(netmask) {
+    return this.subnets.find(el => el.netmask == netmask);
+  }
+
+  getSubnetByWildcard(wildcard) {
+    return this.subnets.find(el => el.wildcard == wildcard);
+  }
+
   getClassRanges() {
     return this.classRanges;
   }

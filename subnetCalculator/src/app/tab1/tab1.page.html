@@ -22,13 +22,13 @@
 
     <ion-item lines="none">
       <ion-label position="stacked">IPv4 Address</ion-label>
-      <ion-input placeholder='xxx.xxx.xxx.xxx'></ion-input>
+      <ion-input #inputSubnetCalculatorAddress placeholder='xxx.xxx.xxx.xxx'></ion-input>
       <ion-label position="stacked">CIDR Notation</ion-label>
-      <ion-input placeholder='/xx'></ion-input>
+      <ion-input #inputSubnetCalculatorCidr placeholder='/xx'></ion-input>
     </ion-item>
 
     <ion-item lines="none" class="center-content">
-      <ion-button fill="outline">Calculate</ion-button>
+      <ion-button fill="outline" (click)="CalculateSubnet();">Calculate</ion-button>
     </ion-item>
   </ion-card>
 
@@ -40,13 +40,53 @@
 
     <ion-item lines="none">
       <ion-label position="stacked">IPv4 Address</ion-label>
-      <ion-input #inputConverterAddress placeholder='xxx.xxx.xxx.xxx'></ion-input>
+      <ion-input #inputBinaryConverter placeholder='xxx.xxx.xxx.xxx'></ion-input>
       <ion-label position="stacked">Binary Address</ion-label>
-      <ion-input #inputConverterBinary disabled="true" placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+      <ion-input #outputBinaryConverter disabled="true" placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
     </ion-item>
 
     <ion-item lines="none" class="center-content">
       <ion-button fill="outline" (click)="Convert2Binary();">Convert</ion-button>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-item lines="none">
+      <ion-icon name="ellipsis-horizontal-circle-sharp" slot="start"></ion-icon>
+      <ion-label>CIDR 2 Netmask Converter</ion-label>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label position="stacked">CIDR Notation</ion-label>
+      <ion-input #inputCidrConverter placeholder='/xx'></ion-input>
+      <ion-label position="stacked">Subnet Mask</ion-label>
+      <ion-input #outputCidrConverter disabled="true" placeholder='xxx.xxx.xxx.xxx'></ion-input>
+      <ion-label position="stacked">Wildcard</ion-label>
+      <ion-input #outputCidrConverterWildcard disabled="true" placeholder='xxx.xxx.xxx.xxx'></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="center-content">
+      <ion-button fill="outline" (click)="ConvertCidr2Netmask();">Convert</ion-button>
+    </ion-item>
+  </ion-card>
+
+  <ion-card>
+    <ion-item lines="none">
+      <ion-icon name="ellipsis-horizontal-circle-sharp" slot="start"></ion-icon>
+      <ion-label>Netmask 2 CIDR Converter</ion-label>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label position="stacked">Subnet Mask</ion-label>
+      <ion-input #inputMaskConverter placeholder='xxx.xxx.xxx.xxx'></ion-input>
+      <ion-label position="stacked">CIDR Notation</ion-label>
+      <ion-input #outputMaskConverter disabled="true" placeholder='/xx'></ion-input>
+      <ion-label position="stacked">Wildcard</ion-label>
+      <ion-input #outputMaskConverterWildcard disabled="true" placeholder='xxx.xxx.xxx.xxx'></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="center-content">
+      <ion-button fill="outline" (click)="ConvertNetmask2Cidr();">Convert</ion-button>
     </ion-item>
   </ion-card>
 
