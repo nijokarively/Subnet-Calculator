@@ -1,0 +1,121 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Network Cheatsheet
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Network Cheatsheet</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+ <ion-card *ngIf="subnets">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-label>Subnets</ion-label>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item *ngFor="let subnet of subnets">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="2">
+              <div>
+                <ion-label>{{subnet.cidr}}</ion-label>
+              </div>
+            </ion-col>
+            <ion-col size="5">
+              <div>
+                <ion-label>Addresses: {{subnet.addresses.toLocaleString()}}</ion-label>
+              </div>
+            </ion-col>
+            <ion-col size="5">
+              <div>
+                <ion-label>Subnet: {{subnet.netmask}}</ion-label>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="5"  offset="2">
+              <div>
+                <ion-label>Hosts: {{subnet.hosts.toLocaleString()}}</ion-label>
+              </div>
+            </ion-col>
+            <ion-col size="5">
+              <div>
+                <ion-label>Wildcard: {{subnet.wildcard}}</ion-label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="classRanges">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-label>Classful Ranges</ion-label>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item *ngFor="let class of classRanges">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="2">
+              <div>
+                <ion-label>{{class.name}}</ion-label>
+              </div>
+            </ion-col>
+            <ion-col size="5">
+              <div>
+                <ion-label>Start: {{class.rangeStart}}</ion-label>
+              </div>
+            </ion-col>
+            <ion-col size="5">
+              <div>
+                <ion-label>End: {{class.rangeEnd}}</ion-label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="reservedRanges">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-label>Reserved Ranges</ion-label>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item *ngFor="let range of reservedRanges">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="2">
+              <div>
+                <ion-label>{{range.name}}</ion-label>
+              </div>
+            </ion-col>
+            <ion-col size="5">
+              <div>
+                <ion-label>Start: {{range.rangeStart}}</ion-label>
+              </div>
+            </ion-col>
+            <ion-col size="5">
+              <div>
+                <ion-label>End: {{range.rangeEnd}}</ion-label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

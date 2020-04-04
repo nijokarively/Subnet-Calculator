@@ -1,0 +1,64 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Network Tools
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Network Tools</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-item>
+      <ion-icon name="ellipsis-horizontal-circle-sharp" slot="start"></ion-icon>
+      <ion-label>Calculate Subnet</ion-label>
+    </ion-item>
+  
+    <ion-card-content>
+      
+      <ion-item>
+        <ion-label position="stacked">IPv4 Address</ion-label>
+        <ion-input placeholder='xxx.xxx.xxx.xxx'></ion-input>
+        <ion-label position="stacked">Subnet Mask</ion-label>
+        <ion-input placeholder='xxx.xxx.xxx.xxx'></ion-input>
+        <ion-label position="stacked">CIDR Notation</ion-label>
+        <ion-input placeholder='/xx'></ion-input>
+      </ion-item>
+
+    </ion-card-content>
+
+    <ion-item>
+      <ion-button fill="outline" slot="end">Calculate</ion-button>
+    </ion-item>
+  </ion-card>
+
+  
+  <ion-card>
+    <ion-item>
+      <ion-icon name="ellipsis-horizontal-circle-sharp" slot="start"></ion-icon>
+      <ion-label>IPv4 Binary Converter</ion-label>
+    </ion-item>
+
+  <ion-card-content>
+      
+    <ion-item>
+      <ion-label position="stacked">IPv4 Address</ion-label>
+      <ion-input placeholder='xxx.xxx.xxx.xxx'></ion-input>
+      <ion-label position="stacked">Binary Address</ion-label>
+      <ion-input placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+    </ion-item>
+
+  </ion-card-content>
+
+  <ion-item>
+    <ion-button fill="outline" slot="end">Convert</ion-button>
+  </ion-item>
+</ion-card>
+
+
+</ion-content>
