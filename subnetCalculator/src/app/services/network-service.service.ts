@@ -59,7 +59,7 @@ export class NetworkService {
   ];
 
   getCidrSubnets() {
-    return this.subnets;
+    return this.subnets.reverse();
   }
 
   getSubnetByCidr(cidr) {

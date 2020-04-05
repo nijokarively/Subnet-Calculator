@@ -19,7 +19,7 @@ export class Tab2Page {
   ionViewWillEnter() {
     // set to landscape
     this.screenOrientation.unlock();
-    this.subnets = this.networkService.getCidrSubnets().reverse();
+    this.subnets = this.networkService.getCidrSubnets();
     this.classRanges = this.networkService.getClassRanges();
     this.reservedRanges = this.networkService.getReservedRanges();
   }
