@@ -3,6 +3,9 @@
 
 /** Ionic CSS Variables **/
 :root {
+  font-size: calc(1vw + 1vh + .5vmin);
+}
+:root {
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;

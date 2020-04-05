@@ -17,3 +17,46 @@ ion-content ion-toolbar {
 .show {
   display: block;
 }
+
+.tool-icon {
+  zoom:2.0; 
+  margin-top: .5rem !important;
+}
+
+.btn-class {
+  width:8rem;
+  height:2.5rem;
+  font-size: 1.3rem !important;
+}
+
+.btn-container{
+  margin-bottom: 1rem !important;
+}
+
+.label-title {
+  font-size:1.5rem;
+}
+
+.label-title-small {
+  font-size:1.3rem;
+}
+
+.label-subtitle {
+  font-size:1.5rem;
+}
+
+.label-value {
+  font-size:1.6rem;
+}
+
+.label-value-small {
+  font-size:1.4rem;
+}
+
+.label-value-small:disabled {
+  font-size:1.4rem;
+}
+
+.label-bold {
+  font-weight: bold;
+}

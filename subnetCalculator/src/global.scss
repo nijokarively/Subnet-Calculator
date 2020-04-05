@@ -25,27 +25,6 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-.card-title {
-    font-size:1.2rem !important;
-    font-weight: bold !important;
-}
-
-.label-title {
-    font-size:.85rem !important;
-}
-
-.label-subtitle {
-    font-size:.75rem !important;
-}
-
-.label-value {
-    font-size:.75rem !important;
-}
-
-.label-bold {
-    font-weight: bold !important;
-}
-
 .vertical-center {
     position: absolute;
     top: 50%;
@@ -54,9 +33,21 @@
 }
 
 ion-item:last-child {
-    --border-style: none !important;
-    --border-width: 0 0 0 0 !important;
+    --border-style: none;
+    --border-width: 0 0 0 0;
     .item-inner {
         border-bottom: 0px;
     }
+}
+
+ion-content{
+    --ion-background-color:#f1f1f1;
+}
+  
+ion-card{
+    --ion-background-color:#ffffff;
+}
+
+ion-toolbar{
+    --background:#ffffff;
 }
