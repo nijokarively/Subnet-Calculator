@@ -13,6 +13,12 @@ export class Tab1Page {
 
   @ViewChild('inputSubnetCalculatorAddress', { read: ElementRef, static: false }) inputSubnetCalculatorAddress: ElementRef;
   @ViewChild('inputSubnetCalculatorCidr', { read: ElementRef, static: false }) inputSubnetCalculatorCidr: ElementRef;
+  @ViewChild('outputSubnetCalculatorNetmask', { read: ElementRef, static: false }) outputSubnetCalculatorNetmask: ElementRef;
+  @ViewChild('outputSubnetCalculatorWildcard', { read: ElementRef, static: false }) outputSubnetCalculatorWildcard: ElementRef;
+  @ViewChild('outputSubnetCalculatorNetwork', { read: ElementRef, static: false }) outputSubnetCalculatorNetwork: ElementRef;
+  @ViewChild('outputSubnetCalculatorBroadcast', { read: ElementRef, static: false }) outputSubnetCalculatorBroadcast: ElementRef;
+  @ViewChild('outputSubnetCalculatorMinHosts', { read: ElementRef, static: false }) outputSubnetCalculatorMinHosts: ElementRef;
+  @ViewChild('outputSubnetCalculatorMaxHosts', { read: ElementRef, static: false }) outputSubnetCalculatorMaxHosts: ElementRef;
   @ViewChild('inputBinaryConverter', { read: ElementRef, static: false }) inputBinaryConverter: ElementRef;
   @ViewChild('outputBinaryConverter', { read: ElementRef, static: false }) outputBinaryConverter: ElementRef;
   @ViewChild('inputCidrConverter', { read: ElementRef, static: false }) inputCidrConverter: ElementRef;
@@ -21,6 +27,22 @@ export class Tab1Page {
   @ViewChild('inputMaskConverter', { read: ElementRef, static: false }) inputMaskConverter: ElementRef;
   @ViewChild('outputMaskConverter', { read: ElementRef, static: false }) outputMaskConverter: ElementRef;
   @ViewChild('outputMaskConverterWildcard', { read: ElementRef, static: false }) outputMaskConverterWildcard: ElementRef;
+  @ViewChild('outputSubnetCalculatorTotalHosts', { read: ElementRef, static: false }) outputSubnetCalculatorTotalHosts: ElementRef;
+  @ViewChild('outputSubnetCalculatorUsableHosts', { read: ElementRef, static: false }) outputSubnetCalculatorUsableHosts: ElementRef;
+
+  private showSubnetResults: any;
+
+  ionViewWillEnter() {
+    this.showSubnetResults = false;
+  }
+
+  ionViewDidEnter() {
+
+  }
+
+  ionViewDidLeave() {
+    this.ClearInputs();
+  }
 
   async createToast(msg: string) {
     console.log(msg);
@@ -31,6 +53,30 @@ export class Tab1Page {
     toast.present();
   }
 
+  ClearInputs(){
+    this.inputSubnetCalculatorAddress.nativeElement.value = '';
+    this.inputSubnetCalculatorCidr.nativeElement.value = '';
+    this.outputSubnetCalculatorNetmask.nativeElement.value = '';
+    this.outputSubnetCalculatorWildcard.nativeElement.value = '';
+    this.outputSubnetCalculatorNetwork.nativeElement.value = '';
+    this.outputSubnetCalculatorBroadcast.nativeElement.value = '';
+    this.outputSubnetCalculatorMinHosts.nativeElement.value = '';
+    this.outputSubnetCalculatorMaxHosts.nativeElement.value = '';
+    this.outputSubnetCalculatorTotalHosts.nativeElement.value = '';
+    this.outputSubnetCalculatorUsableHosts.nativeElement.value = '';
+
+    this.inputBinaryConverter.nativeElement.value = '';
+    this.outputBinaryConverter.nativeElement.value = '';
+
+    this.inputCidrConverter.nativeElement.value = '';
+    this.outputCidrConverter.nativeElement.value = '';
+    this.outputCidrConverterWildcard.nativeElement.value = '';
+
+    this.inputMaskConverter.nativeElement.value = '';
+    this.outputMaskConverter.nativeElement.value = '';
+    this.outputMaskConverterWildcard.nativeElement.value = '';
+  }
+
   CalculateSubnet(){
     const inputAddress = this.inputSubnetCalculatorAddress.nativeElement.value;
     const inputCidr = this.inputSubnetCalculatorCidr.nativeElement.value;
@@ -39,6 +85,7 @@ export class Tab1Page {
     } else if (!this.ValidateCidr(inputCidr)) {
       this.createToast("You have entered an invalid CIDR!");
     } else {
+      this.showSubnetResults = true;
       const ipAddress = inputAddress.split('.');
       const subnet = this.networkService.getSubnetByCidr(inputCidr);
       const addresses = subnet.addresses;
@@ -57,8 +104,16 @@ export class Tab1Page {
           firstHostAddress.push(baseAddress[i]);
           lastHostAddress.push(broadcastAddress[i]);
         }
-      }   
+      } 
       
+      this.outputSubnetCalculatorNetmask.nativeElement.value = netmask.join('.');
+      this.outputSubnetCalculatorWildcard.nativeElement.value = invertedNetmask.join('.');
+      this.outputSubnetCalculatorNetwork.nativeElement.value = baseAddress.join('.');
+      this.outputSubnetCalculatorBroadcast.nativeElement.value = broadcastAddress.join('.');
+      this.outputSubnetCalculatorMinHosts.nativeElement.value = firstHostAddress.join('.');
+      this.outputSubnetCalculatorMaxHosts.nativeElement.value = lastHostAddress.join('.');    
+      this.outputSubnetCalculatorTotalHosts.nativeElement.value = addresses.toLocaleString();
+      this.outputSubnetCalculatorUsableHosts.nativeElement.value = hosts.toLocaleString();
     }
 
   }
@@ -82,7 +137,7 @@ export class Tab1Page {
   }
 
   ConvertCidr2Netmask(){
-    const inputCidr= this.inputCidrConverter.nativeElement.value;
+    const inputCidr = this.inputCidrConverter.nativeElement.value;
     if (this.ValidateCidr(inputCidr)){
       const subnet = this.networkService.getSubnetByCidr(inputCidr);
       this.outputCidrConverter.nativeElement.value = subnet.netmask;
@@ -93,7 +148,7 @@ export class Tab1Page {
   }
 
   ConvertNetmask2Cidr(){
-    const inputAddress= this.inputMaskConverter.nativeElement.value;
+    const inputAddress = this.inputMaskConverter.nativeElement.value;
     if (this.ValidateIpAddress(inputAddress)){
       const subnet = this.networkService.getSubnetByNetmask(inputAddress);
       this.outputMaskConverter.nativeElement.value = subnet.cidr;

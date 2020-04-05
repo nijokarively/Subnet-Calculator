@@ -25,6 +25,24 @@
       <ion-input #inputSubnetCalculatorAddress placeholder='xxx.xxx.xxx.xxx'></ion-input>
       <ion-label position="stacked">CIDR Notation</ion-label>
       <ion-input #inputSubnetCalculatorCidr placeholder='/xx'></ion-input>
+      <div [ngClass]="showSubnetResults ? 'show' : 'hide'">
+        <ion-label position="stacked">Netmask</ion-label>
+        <ion-input #outputSubnetCalculatorNetmask disabled="true" placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+        <ion-label position="stacked">Wildcard</ion-label>
+        <ion-input #outputSubnetCalculatorWildcard disabled="true" placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+        <ion-label position="stacked">Network</ion-label>
+        <ion-input #outputSubnetCalculatorNetwork disabled="true" placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+        <ion-label position="stacked">Broadcast</ion-label>
+        <ion-input #outputSubnetCalculatorBroadcast disabled="true" placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+        <ion-label position="stacked">Min Host</ion-label>
+        <ion-input #outputSubnetCalculatorMinHosts disabled="true" placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+        <ion-label position="stacked">Max Host</ion-label>
+        <ion-input #outputSubnetCalculatorMaxHosts disabled="true" placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+        <ion-label position="stacked">Total Hosts</ion-label>
+        <ion-input #outputSubnetCalculatorTotalHosts disabled="true"></ion-input>
+        <ion-label position="stacked">Usable Hosts</ion-label>
+        <ion-input #outputSubnetCalculatorUsableHosts disabled="true"></ion-input>
+      </div>
     </ion-item>
 
     <ion-item lines="none" class="center-content">
