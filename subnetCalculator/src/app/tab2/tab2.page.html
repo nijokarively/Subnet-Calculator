@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Network Cheatsheet
+      NetLab Cheatsheet
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,7 +9,7 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Network Cheatsheet</ion-title>
+      <ion-title size="large">NetLab Cheatsheet</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -19,41 +19,43 @@
         <ion-label>Subnets</ion-label>
       </ion-card-title>
     </ion-card-header>
-    <ion-card-content>
       <ion-item *ngFor="let subnet of subnets">
         <ion-grid>
           <ion-row>
             <ion-col size="2">
               <div>
-                <ion-label>{{subnet.cidr}}</ion-label>
+                <ion-label class="label-bold vertical-center">{{subnet.cidr}}</ion-label>
               </div>
             </ion-col>
             <ion-col size="5">
               <div>
-                <ion-label>Addresses: {{subnet.addresses.toLocaleString()}}</ion-label>
+                <ion-label class="label-subtitle">Addresses:</ion-label>
+                <ion-label class="label-value">{{subnet.addresses.toLocaleString()}}</ion-label>
               </div>
             </ion-col>
             <ion-col size="5">
               <div>
-                <ion-label>Subnet: {{subnet.netmask}}</ion-label>
+                <ion-label class="label-subtitle">Subnet</ion-label>
+                <ion-label class="label-value">{{subnet.netmask}}</ion-label>
               </div>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="5"  offset="2">
               <div>
-                <ion-label>Hosts: {{subnet.hosts.toLocaleString()}}</ion-label>
+                <ion-label class="label-subtitle">Hosts:</ion-label>
+                <ion-label class="label-value">{{subnet.hosts.toLocaleString()}}</ion-label>
               </div>
             </ion-col>
             <ion-col size="5">
               <div>
-                <ion-label>Wildcard: {{subnet.wildcard}}</ion-label>
+                <ion-label class="label-subtitle">Wildcard:</ion-label>
+                <ion-label class="label-value">{{subnet.wildcard}}</ion-label>
               </div>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-item>
-    </ion-card-content>
   </ion-card>
 
   <ion-card *ngIf="classRanges">
@@ -62,29 +64,29 @@
         <ion-label>Classful Ranges</ion-label>
       </ion-card-title>
     </ion-card-header>
-    <ion-card-content>
       <ion-item *ngFor="let class of classRanges">
         <ion-grid>
           <ion-row>
-            <ion-col size="2">
+            <ion-col size="3">
               <div>
-                <ion-label>{{class.name}}</ion-label>
+                <ion-label class="label-bold vertical-center">{{class.name}}</ion-label>
+              </div>
+            </ion-col>
+            <ion-col size="4">
+              <div>
+                <ion-label class="label-subtitle">Start:</ion-label>
+                <ion-label class="label-value">{{class.rangeStart}}</ion-label>
               </div>
             </ion-col>
             <ion-col size="5">
               <div>
-                <ion-label>Start: {{class.rangeStart}}</ion-label>
-              </div>
-            </ion-col>
-            <ion-col size="5">
-              <div>
-                <ion-label>End: {{class.rangeEnd}}</ion-label>
+                <ion-label class="label-subtitle">End:</ion-label>
+                <ion-label class="label-value">{{class.rangeEnd}}</ion-label>
               </div>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-item>
-    </ion-card-content>
   </ion-card>
 
   <ion-card *ngIf="reservedRanges">
@@ -93,29 +95,29 @@
         <ion-label>Reserved Ranges</ion-label>
       </ion-card-title>
     </ion-card-header>
-    <ion-card-content>
       <ion-item *ngFor="let range of reservedRanges">
         <ion-grid>
           <ion-row>
-            <ion-col size="2">
+            <ion-col size="3">
               <div>
-                <ion-label>{{range.name}}</ion-label>
+                <ion-label class="label-title label-bold vertical-center">{{range.name}}</ion-label>
+              </div>
+            </ion-col>
+            <ion-col size="4">
+              <div>
+                <ion-label class="label-subtitle">Start:</ion-label>
+                <ion-label class="label-value">{{range.rangeStart}}</ion-label>
               </div>
             </ion-col>
             <ion-col size="5">
               <div>
-                <ion-label>Start: {{range.rangeStart}}</ion-label>
-              </div>
-            </ion-col>
-            <ion-col size="5">
-              <div>
-                <ion-label>End: {{range.rangeEnd}}</ion-label>
+                <ion-label class="label-subtitle">End:</ion-label>
+                <ion-label class="label-value">{{range.rangeEnd}}</ion-label>
               </div>
             </ion-col>
           </ion-row>
         </ion-grid>
       </ion-item>
-    </ion-card-content>
   </ion-card>
 
 </ion-content>

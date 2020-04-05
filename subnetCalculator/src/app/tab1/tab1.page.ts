@@ -33,7 +33,6 @@ export class Tab1Page {
   private showSubnetResults: any;
 
   ionViewWillEnter() {
-    this.showSubnetResults = false;
   }
 
   ionViewDidEnter() {
@@ -71,6 +70,7 @@ export class Tab1Page {
     this.outputSubnetCalculatorMaxHosts.nativeElement.value = '';
     this.outputSubnetCalculatorTotalHosts.nativeElement.value = '';
     this.outputSubnetCalculatorUsableHosts.nativeElement.value = '';
+    this.showSubnetResults = false;
   }
 
   ClearConvert2Binary() {

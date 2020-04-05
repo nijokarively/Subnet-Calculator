@@ -24,3 +24,34 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.label-title {
+    font-size:.85rem !important;
+}
+  
+.label-subtitle {
+    font-size:.75rem !important;
+}
+
+.label-value {
+    font-size:.75rem !important;
+}
+
+.label-bold {
+    font-weight: bold !important;
+}
+
+.vertical-center {
+    position: absolute;
+    top: 50%;
+    left: 3%;
+    transform: translate(-3%,-50%);
+}
+
+ion-item:last-child {
+    --border-style: none !important;
+    --border-width: 0 0 0 0 !important;
+    .item-inner {
+        border-bottom: 0px;
+    }
+}
