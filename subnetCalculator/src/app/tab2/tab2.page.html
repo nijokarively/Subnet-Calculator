@@ -13,6 +13,14 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-item lines="none">
+    <ion-icon slot="start"></ion-icon>
+    <ion-chip color="primary">
+      <ion-icon name="reload" color="primary"></ion-icon>
+      <ion-label>Rotate screen if data gets cut off</ion-label>
+    </ion-chip>
+  </ion-item>
+
   <ion-card *ngIf="subnets">
     <ion-item lines="none">
       <ion-label class="label-title label-bold">Subnets</ion-label>

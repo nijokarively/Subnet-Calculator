@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { NetworkService } from '../services/network-service.service';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -8,9 +9,6 @@ import { NetworkService } from '../services/network-service.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-
-  constructor(public toastController: ToastController, private networkService: NetworkService) { }
-
   @ViewChild('inputSubnetCalculatorAddress', { read: ElementRef, static: false }) inputSubnetCalculatorAddress: ElementRef;
   @ViewChild('inputSubnetCalculatorCidr', { read: ElementRef, static: false }) inputSubnetCalculatorCidr: ElementRef;
   @ViewChild('outputSubnetCalculatorNetmask', { read: ElementRef, static: false }) outputSubnetCalculatorNetmask: ElementRef;
@@ -32,6 +30,29 @@ export class Tab1Page {
 
   private showSubnetResults: any;
 
+  keyboardStyle = { width: '100%', height: '0px' };
+
+  constructor(public toastController: ToastController, private networkService: NetworkService, private keyboard: Keyboard) {
+
+    this.keyboard.onKeyboardWillShow().subscribe( {
+      next: x => {
+        this.keyboardStyle.height = x.keyboardHeight + 'px';
+      },
+      error: e => {
+        console.log(e);
+      }
+    });
+    this.keyboard.onKeyboardWillHide().subscribe( {
+      next: x => {
+        this.keyboardStyle.height = '0px';
+      },
+      error: e => {
+        console.log(e);
+      }
+    });
+
+   }
+
   ionViewWillEnter() {
   }
 
@@ -50,6 +71,26 @@ export class Tab1Page {
       duration: 2000
     });
     toast.present();
+  }
+
+  public focusInput (event): void {
+    let total = 0;
+    let container = null;
+
+    const _rec = (obj) => {
+
+        total += obj.offsetTop;
+        const par = obj.offsetParent;
+        if (par && par.localName !== 'ion-content') {
+            _rec(par);
+        } else {
+            container = par;
+        }
+    };
+    _rec(event.target);
+    setTimeout(() => {
+      container.scrollToPoint(0, total - 50, 400);
+    }, 500);
   }
 
   ClearInputs() {
