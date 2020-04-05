@@ -46,7 +46,8 @@
     </ion-item>
 
     <ion-item lines="none" class="center-content">
-      <ion-button fill="outline" (click)="CalculateSubnet();">Calculate</ion-button>
+      <ion-button fill="outline" slot="start" (click)="CalculateSubnet();">Calculate</ion-button>
+      <ion-button fill="outline" slot="end" color="danger" (click)="ClearCalculateSubnet();">Reset</ion-button>
     </ion-item>
   </ion-card>
 
@@ -64,7 +65,8 @@
     </ion-item>
 
     <ion-item lines="none" class="center-content">
-      <ion-button fill="outline" (click)="Convert2Binary();">Convert</ion-button>
+      <ion-button fill="outline" slot="start" (click)="Convert2Binary();">Convert</ion-button>
+      <ion-button fill="outline" slot="end" color="danger" (click)="ClearConvert2Binary();">Reset</ion-button>
     </ion-item>
   </ion-card>
 
@@ -84,7 +86,8 @@
     </ion-item>
 
     <ion-item lines="none" class="center-content">
-      <ion-button fill="outline" (click)="ConvertCidr2Netmask();">Convert</ion-button>
+      <ion-button fill="outline" slot="start" (click)="ConvertCidr2Netmask();">Convert</ion-button>
+      <ion-button fill="outline" slot="end" color="danger" (click)="ClearConvertCidr2Netmask();">Reset</ion-button>
     </ion-item>
   </ion-card>
 
@@ -104,7 +107,8 @@
     </ion-item>
 
     <ion-item lines="none" class="center-content">
-      <ion-button fill="outline" (click)="ConvertNetmask2Cidr();">Convert</ion-button>
+      <ion-button fill="outline" slot="start" (click)="ConvertNetmask2Cidr();">Convert</ion-button>
+      <ion-button fill="outline" slot="end" color="danger" (click)="ClearConvertNetmask2Cidr();">Reset</ion-button>
     </ion-item>
   </ion-card>
 

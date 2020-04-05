@@ -53,7 +53,14 @@ export class Tab1Page {
     toast.present();
   }
 
-  ClearInputs(){
+  ClearInputs() {
+    this.ClearCalculateSubnet();
+    this.ClearConvert2Binary();
+    this.ClearConvertCidr2Netmask();
+    this.ClearConvertNetmask2Cidr();
+  }
+
+  ClearCalculateSubnet() {
     this.inputSubnetCalculatorAddress.nativeElement.value = '';
     this.inputSubnetCalculatorCidr.nativeElement.value = '';
     this.outputSubnetCalculatorNetmask.nativeElement.value = '';
@@ -64,23 +71,29 @@ export class Tab1Page {
     this.outputSubnetCalculatorMaxHosts.nativeElement.value = '';
     this.outputSubnetCalculatorTotalHosts.nativeElement.value = '';
     this.outputSubnetCalculatorUsableHosts.nativeElement.value = '';
+  }
 
+  ClearConvert2Binary() {
     this.inputBinaryConverter.nativeElement.value = '';
     this.outputBinaryConverter.nativeElement.value = '';
+  }
 
+  ClearConvertCidr2Netmask() {
     this.inputCidrConverter.nativeElement.value = '';
     this.outputCidrConverter.nativeElement.value = '';
     this.outputCidrConverterWildcard.nativeElement.value = '';
+  }
 
+  ClearConvertNetmask2Cidr() {
     this.inputMaskConverter.nativeElement.value = '';
     this.outputMaskConverter.nativeElement.value = '';
     this.outputMaskConverterWildcard.nativeElement.value = '';
   }
 
-  CalculateSubnet(){
+  CalculateSubnet() {
     const inputAddress = this.inputSubnetCalculatorAddress.nativeElement.value;
     const inputCidr = this.inputSubnetCalculatorCidr.nativeElement.value;
-    if (!this.ValidateIpAddress(inputAddress)){
+    if (!this.ValidateIpAddress(inputAddress)) {
       this.createToast("You have entered an invalid IP address!");
     } else if (!this.ValidateCidr(inputCidr)) {
       this.createToast("You have entered an invalid CIDR!");
@@ -90,13 +103,13 @@ export class Tab1Page {
       const subnet = this.networkService.getSubnetByCidr(inputCidr);
       const addresses = subnet.addresses;
       const hosts = subnet.hosts;
-      const netmask = subnet.netmask.split('.').map(function(el) { return parseInt(el, 10) });
-      const invertedNetmask = subnet.wildcard.split('.').map(function(el) { return parseInt(el, 10) });
-      const baseAddress = ipAddress.map(function(block, idx) { return block & netmask[idx]; });
-      const broadcastAddress = baseAddress.map(function(block, idx) { return block | invertedNetmask[idx]; });
+      const netmask = subnet.netmask.split('.').map(function (el) { return parseInt(el, 10) });
+      const invertedNetmask = subnet.wildcard.split('.').map(function (el) { return parseInt(el, 10) });
+      const baseAddress = ipAddress.map(function (block, idx) { return block & netmask[idx]; });
+      const broadcastAddress = baseAddress.map(function (block, idx) { return block | invertedNetmask[idx]; });
       var firstHostAddress = [];
       var lastHostAddress = [];
-      for (var i = 0; i < baseAddress.length; i++){
+      for (var i = 0; i < baseAddress.length; i++) {
         if (i == 3) {
           firstHostAddress.push((-(~baseAddress[i])));
           lastHostAddress.push((broadcastAddress[i] << 1) + (~broadcastAddress[i]));
@@ -104,14 +117,14 @@ export class Tab1Page {
           firstHostAddress.push(baseAddress[i]);
           lastHostAddress.push(broadcastAddress[i]);
         }
-      } 
-      
+      }
+
       this.outputSubnetCalculatorNetmask.nativeElement.value = netmask.join('.');
       this.outputSubnetCalculatorWildcard.nativeElement.value = invertedNetmask.join('.');
       this.outputSubnetCalculatorNetwork.nativeElement.value = baseAddress.join('.');
       this.outputSubnetCalculatorBroadcast.nativeElement.value = broadcastAddress.join('.');
       this.outputSubnetCalculatorMinHosts.nativeElement.value = firstHostAddress.join('.');
-      this.outputSubnetCalculatorMaxHosts.nativeElement.value = lastHostAddress.join('.');    
+      this.outputSubnetCalculatorMaxHosts.nativeElement.value = lastHostAddress.join('.');
       this.outputSubnetCalculatorTotalHosts.nativeElement.value = addresses.toLocaleString();
       this.outputSubnetCalculatorUsableHosts.nativeElement.value = hosts.toLocaleString();
     }
@@ -120,7 +133,7 @@ export class Tab1Page {
 
   Convert2Binary() {
     const inputAddress = this.inputBinaryConverter.nativeElement.value;
-    if (this.ValidateIpAddress(inputAddress)){
+    if (this.ValidateIpAddress(inputAddress)) {
       const octects = inputAddress.split('.');
       const binaryOctects = octects.map(function (el) {
         let binaryEl = parseInt(el).toString(2);
@@ -136,39 +149,39 @@ export class Tab1Page {
     }
   }
 
-  ConvertCidr2Netmask(){
+  ConvertCidr2Netmask() {
     const inputCidr = this.inputCidrConverter.nativeElement.value;
-    if (this.ValidateCidr(inputCidr)){
+    if (this.ValidateCidr(inputCidr)) {
       const subnet = this.networkService.getSubnetByCidr(inputCidr);
       this.outputCidrConverter.nativeElement.value = subnet.netmask;
-      this.outputCidrConverterWildcard.nativeElement.value = subnet.wildcard;     
+      this.outputCidrConverterWildcard.nativeElement.value = subnet.wildcard;
     } else {
       this.createToast("You have entered an invalid CIDR!");
     }
   }
 
-  ConvertNetmask2Cidr(){
+  ConvertNetmask2Cidr() {
     const inputAddress = this.inputMaskConverter.nativeElement.value;
-    if (this.ValidateIpAddress(inputAddress)){
+    if (this.ValidateIpAddress(inputAddress)) {
       const subnet = this.networkService.getSubnetByNetmask(inputAddress);
       this.outputMaskConverter.nativeElement.value = subnet.cidr;
-      this.outputMaskConverterWildcard.nativeElement.value = subnet.wildcard;   
+      this.outputMaskConverterWildcard.nativeElement.value = subnet.wildcard;
     } else {
       this.createToast("You have entered an invalid Subnet Mask!");
     }
   }
 
-  ValidateCidr(cidr) {  
-    if (/^(\/([0-9]|[1-2][0-9]|3[0-2]))$/.test(cidr)) {  
-      return (true)  
-    }  
-    return (false)  
+  ValidateCidr(cidr) {
+    if (/^(\/([0-9]|[1-2][0-9]|3[0-2]))$/.test(cidr)) {
+      return (true)
+    }
+    return (false)
   }
 
-  ValidateIpAddress(ipAddress) {  
-    if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipAddress)) {  
-      return (true)  
-    }  
-    return (false)  
+  ValidateIpAddress(ipAddress) {
+    if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipAddress)) {
+      return (true)
+    }
+    return (false)
   }
 }
