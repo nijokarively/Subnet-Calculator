@@ -11,8 +11,8 @@ ion-content ion-toolbar {
 }
 
 .chip-container {
-  margin-top:3rem;
-  margin-bottom:3rem;
+  margin-top:2rem;
+  margin-bottom:2rem;
 }
 
 .hide {
@@ -29,9 +29,9 @@ ion-content ion-toolbar {
 }
 
 .btn-class {
-  width:8rem;
-  height:2.5rem;
-  font-size: 1.3rem !important;
+  width:7.25rem;
+  height:2.25rem;
+  font-size: 1.1rem !important;
 }
 
 .btn-container{
@@ -39,27 +39,27 @@ ion-content ion-toolbar {
 }
 
 .label-title {
-  font-size:1.5rem;
-}
-
-.label-title-small {
   font-size:1.3rem;
 }
 
+.label-title-small {
+  font-size:1.2rem;
+}
+
 .label-subtitle {
-  font-size:1.5rem;
+  font-size:1.3rem;
 }
 
 .label-value {
-  font-size:1.6rem;
+  font-size:1.4rem;
 }
 
 .label-value-small {
-  font-size:1.4rem;
+  font-size:1.2rem;
 }
 
 .label-value-small:disabled {
-  font-size:1.4rem;
+  font-size:1.2rem;
 }
 
 .label-bold {

@@ -57,3 +57,12 @@ ion-card{
 ion-toolbar{
     --background:#ffffff;
 }
+
+.super-toast {
+    z-index: 99999;
+    --border-radius: 3rem;
+    text-align: center;
+    --border-color: rgba(34,36,40, 0.1);
+    --border-style: solid;
+    --border-width: medium;
+}

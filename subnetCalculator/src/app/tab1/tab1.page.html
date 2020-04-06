@@ -13,7 +13,7 @@
         <ion-item lines="none">
           <ion-chip color="primary">
             <ion-icon name="reload" color="primary"></ion-icon>
-            <ion-label>Rotate screen if data gets cut off</ion-label>
+            <ion-label>Rotate your screen if data gets cut off</ion-label>
           </ion-chip>
         </ion-item>
       </ion-col>
@@ -28,9 +28,10 @@
     <ion-item lines="none">
       <ion-label position="stacked" class="label-subtitle">IPv4 Address</ion-label>
       <ion-input class="label-value" #inputSubnetCalculatorAddress placeholder='xxx.xxx.xxx.xxx'
-        (ionFocus)="focusInput($event)"></ion-input>
+        (ionFocus)="focusInput($event)" (keyup.enter)="CloseKeyboard()"></ion-input>
       <ion-label position="stacked" class="label-subtitle">CIDR Notation</ion-label>
-      <ion-input class="label-value" #inputSubnetCalculatorCidr placeholder='/xx' (ionFocus)="focusInput($event)">
+      <ion-input class="label-value" #inputSubnetCalculatorCidr placeholder='/xx' (ionFocus)="focusInput($event)"
+        (keyup.enter)="CloseKeyboard()">
       </ion-input>
       <div [ngClass]="showSubnetResults ? 'show' : 'hide'">
         <ion-label position="stacked" class="label-subtitle">Netmask</ion-label>
@@ -72,15 +73,20 @@
     </ion-item>
     <ion-item lines="none">
       <ion-label position="stacked" class="label-subtitle">IPv4 Address</ion-label>
-      <ion-input class="label-value" #inputBinaryConverter placeholder='xxx.xxx.xxx.xxx'
-        (ionFocus)="focusInput($event)"></ion-input>
+      <ion-input class="label-value" #inputBinaryConverter placeholder='xxx.xxx.xxx.xxx' (ionFocus)="focusInput($event)"
+        (keyup.enter)="CloseKeyboard()"></ion-input>
+
+
       <ion-label position="stacked" class="label-subtitle">Binary Address</ion-label>
-      <ion-input class="label-value-small" #outputBinaryConverter disabled="true"
-        placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+      <ion-input class="label-value" #outputBinaryConverter disabled="true"
+        placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'>
+      </ion-input>
     </ion-item>
     <ion-item lines="none" class="center-content btn-container">
       <ion-button mode="ios" class="btn-class" fill="outline" shape="round" slot="start" (click)="Convert2Binary();">
         Convert</ion-button>
+        <ion-icon color="primary" name="eye"
+          (click)="ShowDetailBinary();" style="margin-left: auto; margin-right: auto;" *ngIf="showDetailButton"></ion-icon>
       <ion-button mode="ios" class="btn-class" fill="outline" shape="round" slot="end" color="danger"
         (click)="ClearConvert2Binary();">Reset</ion-button>
     </ion-item>
@@ -93,7 +99,8 @@
     </ion-item>
     <ion-item lines="none">
       <ion-label position="stacked" class="label-subtitle">CIDR Notation</ion-label>
-      <ion-input class="label-value" #inputCidrConverter placeholder='/xx' (ionFocus)="focusInput($event)"></ion-input>
+      <ion-input class="label-value" #inputCidrConverter placeholder='/xx' (ionFocus)="focusInput($event)"
+        (keyup.enter)="CloseKeyboard()"></ion-input>
       <ion-label position="stacked" class="label-subtitle">Subnet Mask</ion-label>
       <ion-input class="label-value" #outputCidrConverter disabled="true" placeholder='xxx.xxx.xxx.xxx'></ion-input>
       <ion-label position="stacked" class="label-subtitle">Wildcard</ion-label>
@@ -115,7 +122,8 @@
     </ion-item>
     <ion-item lines="none">
       <ion-label position="stacked" class="label-subtitle">Subnet Mask</ion-label>
-      <ion-input class="label-value" #inputMaskConverter placeholder='xxx.xxx.xxx.xxx' (ionFocus)="focusInput($event)">
+      <ion-input class="label-value" #inputMaskConverter placeholder='xxx.xxx.xxx.xxx' (ionFocus)="focusInput($event)"
+        (keyup.enter)="CloseKeyboard()">
       </ion-input>
       <ion-label position="stacked" class="label-subtitle">CIDR Notation</ion-label>
       <ion-input class="label-value" #outputMaskConverter disabled="true" placeholder='/xx'></ion-input>
