@@ -37,22 +37,22 @@ export class Tab1Page {
 
   constructor(public toastController: ToastController, private networkService: NetworkService, private keyboard: Keyboard, public alertController: AlertController, private screenOrientation: ScreenOrientation) {
 
-    this.keyboard.onKeyboardWillShow().subscribe( {
-      next: x => {
-        this.keyboardStyle.height = x.keyboardHeight + 'px';
-      },
-      error: e => {
-        console.log(e);
-      }
-    });
-    this.keyboard.onKeyboardWillHide().subscribe( {
-      next: x => {
-        this.keyboardStyle.height = '0px';
-      },
-      error: e => {
-        console.log(e);
-      }
-    });
+    // this.keyboard.onKeyboardWillShow().subscribe( {
+    //   next: x => {
+    //     this.keyboardStyle.height = x.keyboardHeight + 'px';
+    //   },
+    //   error: e => {
+    //     console.log(e);
+    //   }
+    // });
+    // this.keyboard.onKeyboardWillHide().subscribe( {
+    //   next: x => {
+    //     this.keyboardStyle.height = '0px';
+    //   },
+    //   error: e => {
+    //     console.log(e);
+    //   }
+    // });
 
    }
 
@@ -94,25 +94,25 @@ export class Tab1Page {
 
   }
 
-  public focusInput (event): void {
-    let total = 0;
-    let container = null;
+  // public focusInput (event): void {
+  //   let total = 0;
+  //   let container = null;
 
-    const _rec = (obj) => {
+  //   const _rec = (obj) => {
 
-        total += obj.offsetTop;
-        const par = obj.offsetParent;
-        if (par && par.localName !== 'ion-content') {
-            _rec(par);
-        } else {
-            container = par;
-        }
-    };
-    _rec(event.target);
-    setTimeout(() => {
-      container.scrollToPoint(0, total - 50, 400);
-    }, 500);
-  }
+  //       total += obj.offsetTop;
+  //       const par = obj.offsetParent;
+  //       if (par && par.localName !== 'ion-content') {
+  //           _rec(par);
+  //       } else {
+  //           container = par;
+  //       }
+  //   };
+  //   _rec(event.target);
+  //   setTimeout(() => {
+  //     container.scrollToPoint(0, total - 50, 400);
+  //   }, 500);
+  // }
 
   CloseKeyboard(){
     this.keyboard.hide();

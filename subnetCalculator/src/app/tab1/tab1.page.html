@@ -10,12 +10,10 @@
   <ion-grid class="center-grid">
     <ion-row text-center>
       <ion-col>
-        <ion-item lines="none">
-          <ion-chip color="primary">
-            <ion-icon name="reload" color="primary"></ion-icon>
-            <ion-label>Rotate your screen if data gets cut off</ion-label>
-          </ion-chip>
-        </ion-item>
+        <ion-chip color="primary">
+          <ion-icon name="reload" color="primary"></ion-icon>
+          <ion-label>Rotate your screen if data gets cut off</ion-label>
+        </ion-chip>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -28,10 +26,9 @@
     <ion-item lines="none">
       <ion-label position="stacked" class="label-subtitle">IPv4 Address</ion-label>
       <ion-input class="label-value" #inputSubnetCalculatorAddress placeholder='xxx.xxx.xxx.xxx'
-        (ionFocus)="focusInput($event)" (keyup.enter)="CloseKeyboard()"></ion-input>
+        (keyup.enter)="CloseKeyboard()"></ion-input>
       <ion-label position="stacked" class="label-subtitle">CIDR Notation</ion-label>
-      <ion-input class="label-value" #inputSubnetCalculatorCidr placeholder='/xx' (ionFocus)="focusInput($event)"
-        (keyup.enter)="CloseKeyboard()">
+      <ion-input class="label-value" #inputSubnetCalculatorCidr placeholder='/xx' (keyup.enter)="CloseKeyboard()">
       </ion-input>
       <div [ngClass]="showSubnetResults ? 'show' : 'hide'">
         <ion-label position="stacked" class="label-subtitle">Netmask</ion-label>
@@ -73,7 +70,7 @@
     </ion-item>
     <ion-item lines="none">
       <ion-label position="stacked" class="label-subtitle">IPv4 Address</ion-label>
-      <ion-input class="label-value" #inputBinaryConverter placeholder='xxx.xxx.xxx.xxx' (ionFocus)="focusInput($event)"
+      <ion-input class="label-value" #inputBinaryConverter placeholder='xxx.xxx.xxx.xxx'
         (keyup.enter)="CloseKeyboard()"></ion-input>
 
 
@@ -85,8 +82,8 @@
     <ion-item lines="none" class="center-content btn-container">
       <ion-button mode="ios" class="btn-class" fill="outline" shape="round" slot="start" (click)="Convert2Binary();">
         Convert</ion-button>
-        <ion-icon color="primary" name="eye"
-          (click)="ShowDetailBinary();" style="margin-left: auto; margin-right: auto;" *ngIf="showDetailButton"></ion-icon>
+      <ion-icon color="primary" name="eye" (click)="ShowDetailBinary();" style="margin-left: auto; margin-right: auto;"
+        *ngIf="showDetailButton"></ion-icon>
       <ion-button mode="ios" class="btn-class" fill="outline" shape="round" slot="end" color="danger"
         (click)="ClearConvert2Binary();">Reset</ion-button>
     </ion-item>
@@ -99,8 +96,7 @@
     </ion-item>
     <ion-item lines="none">
       <ion-label position="stacked" class="label-subtitle">CIDR Notation</ion-label>
-      <ion-input class="label-value" #inputCidrConverter placeholder='/xx' (ionFocus)="focusInput($event)"
-        (keyup.enter)="CloseKeyboard()"></ion-input>
+      <ion-input class="label-value" #inputCidrConverter placeholder='/xx' (keyup.enter)="CloseKeyboard()"></ion-input>
       <ion-label position="stacked" class="label-subtitle">Subnet Mask</ion-label>
       <ion-input class="label-value" #outputCidrConverter disabled="true" placeholder='xxx.xxx.xxx.xxx'></ion-input>
       <ion-label position="stacked" class="label-subtitle">Wildcard</ion-label>
@@ -122,8 +118,7 @@
     </ion-item>
     <ion-item lines="none">
       <ion-label position="stacked" class="label-subtitle">Subnet Mask</ion-label>
-      <ion-input class="label-value" #inputMaskConverter placeholder='xxx.xxx.xxx.xxx' (ionFocus)="focusInput($event)"
-        (keyup.enter)="CloseKeyboard()">
+      <ion-input class="label-value" #inputMaskConverter placeholder='xxx.xxx.xxx.xxx' (keyup.enter)="CloseKeyboard()">
       </ion-input>
       <ion-label position="stacked" class="label-subtitle">CIDR Notation</ion-label>
       <ion-input class="label-value" #outputMaskConverter disabled="true" placeholder='/xx'></ion-input>
@@ -142,12 +137,10 @@
   <ion-grid class="center-grid">
     <ion-row text-center>
       <ion-col>
-        <ion-item lines="none" class="chip-container">
-          <ion-chip color="primary">
-            <ion-icon name="flask-sharp" color="primary"></ion-icon>
-            <ion-label>More to come...</ion-label>
-          </ion-chip>
-        </ion-item>
+        <ion-chip color="primary">
+          <ion-icon name="flask-sharp" color="primary"></ion-icon>
+          <ion-label>More to come...</ion-label>
+        </ion-chip>
       </ion-col>
     </ion-row>
   </ion-grid>

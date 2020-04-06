@@ -28,7 +28,6 @@ export class Tab2Page {
   }
 
   ionViewWillEnter() {
-    this.createToast('Rotate your screen if data gets cut off');
     this.subnets = this.networkService.getCidrSubnets();
     this.classRanges = this.networkService.getClassRanges();
     this.reservedRanges = this.networkService.getReservedRanges();
