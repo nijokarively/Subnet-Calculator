@@ -30,6 +30,7 @@
     "@ionic/angular": "^5.0.0",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-screen-orientation": "^3.0.2",
+    "cordova-plugin-splashscreen": "^5.0.2",
     "core-js": "^2.5.4",
     "es6-promise-plugin": "^4.2.2",
     "rxjs": "~6.5.1",
@@ -64,7 +65,8 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-screen-orientation": {},
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-splashscreen": {}
     }
   }
 }
