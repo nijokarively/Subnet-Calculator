@@ -4,5 +4,36 @@ ion-content ion-toolbar {
 
 .tech-icon {
   zoom:2.0; 
-  padding-top: .5rem !important;
+  padding-top: .5em !important;
+}
+
+.left-icon {
+  zoom:2.0; 
+  float: left !important;
+}
+
+.card-title {
+  font-size:1.3rem;
+  font-weight: bold;
+}
+
+.label-title {
+  font-size:1.3rem;
+}
+
+.label-subtitle {
+  font-size:1.3rem;
+}
+
+.label-value {
+  font-size:1.3rem;
+}
+
+.label-bold {
+  font-weight: bold;
+}
+
+.card-img {
+  background-color:#283249;
+  text-align: center;
 }

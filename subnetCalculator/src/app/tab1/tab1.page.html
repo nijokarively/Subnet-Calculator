@@ -1,107 +1,147 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      NetLab Tools
+      Tools
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">NetLab Tools</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid class="center-grid">
+    <ion-row text-center>
+      <ion-col>
+        <ion-chip color="primary">
+          <ion-icon name="reload" color="primary"></ion-icon>
+          <ion-label>Rotate your screen if data gets cut off</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <ion-card>
     <ion-item lines="none">
-      <ion-icon src="/assets/svg/subnet.svg" slot="start"></ion-icon>
-      <ion-label class="label-bold">Subnet Calculator</ion-label>
+      <ion-icon class="tool-icon" src="/assets/svg/subnet.svg" slot="start"></ion-icon>
+      <ion-label class="label-title label-bold">Subnet Calculator</ion-label>
     </ion-item>
     <ion-item lines="none">
-      <ion-label position="stacked">IPv4 Address</ion-label>
-      <ion-input #inputSubnetCalculatorAddress placeholder='xxx.xxx.xxx.xxx'></ion-input>
-      <ion-label position="stacked">CIDR Notation</ion-label>
-      <ion-input #inputSubnetCalculatorCidr placeholder='/xx'></ion-input>
+      <ion-label position="stacked" class="label-subtitle">IPv4 Address</ion-label>
+      <ion-input class="label-value" #inputSubnetCalculatorAddress placeholder='xxx.xxx.xxx.xxx'
+        (keyup.enter)="CloseKeyboard()"></ion-input>
+      <ion-label position="stacked" class="label-subtitle">CIDR Notation</ion-label>
+      <ion-input class="label-value" #inputSubnetCalculatorCidr placeholder='/xx' (keyup.enter)="CloseKeyboard()">
+      </ion-input>
       <div [ngClass]="showSubnetResults ? 'show' : 'hide'">
-        <ion-label position="stacked">Netmask</ion-label>
-        <ion-input #outputSubnetCalculatorNetmask disabled="true" placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
-        <ion-label position="stacked">Wildcard</ion-label>
-        <ion-input #outputSubnetCalculatorWildcard disabled="true" placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
-        <ion-label position="stacked">Network</ion-label>
-        <ion-input #outputSubnetCalculatorNetwork disabled="true" placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
-        <ion-label position="stacked">Broadcast</ion-label>
-        <ion-input #outputSubnetCalculatorBroadcast disabled="true" placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
-        <ion-label position="stacked">Min Host</ion-label>
-        <ion-input #outputSubnetCalculatorMinHosts disabled="true" placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
-        <ion-label position="stacked">Max Host</ion-label>
-        <ion-input #outputSubnetCalculatorMaxHosts disabled="true" placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
-        <ion-label position="stacked">Total Addresses</ion-label>
-        <ion-input #outputSubnetCalculatorTotalHosts disabled="true"></ion-input>
-        <ion-label position="stacked">Usable Hosts</ion-label>
-        <ion-input #outputSubnetCalculatorUsableHosts disabled="true"></ion-input>
+        <ion-label position="stacked" class="label-subtitle">Netmask</ion-label>
+        <ion-input class="label-value" #outputSubnetCalculatorNetmask disabled="true"
+          placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+        <ion-label position="stacked" class="label-subtitle">Wildcard</ion-label>
+        <ion-input class="label-value" #outputSubnetCalculatorWildcard disabled="true"
+          placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+        <ion-label position="stacked" class="label-subtitle">Network</ion-label>
+        <ion-input class="label-value" #outputSubnetCalculatorNetwork disabled="true"
+          placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+        <ion-label position="stacked" class="label-subtitle">Broadcast</ion-label>
+        <ion-input class="label-value" #outputSubnetCalculatorBroadcast disabled="true"
+          placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+        <ion-label position="stacked" class="label-subtitle">Min Host</ion-label>
+        <ion-input class="label-value" #outputSubnetCalculatorMinHosts disabled="true"
+          placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+        <ion-label position="stacked" class="label-subtitle">Max Host</ion-label>
+        <ion-input class="label-value" #outputSubnetCalculatorMaxHosts disabled="true"
+          placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+        <ion-label position="stacked" class="label-subtitle">Total Addresses</ion-label>
+        <ion-input class="label-value" #outputSubnetCalculatorTotalHosts disabled="true"></ion-input>
+        <ion-label position="stacked" class="label-subtitle">Usable Hosts</ion-label>
+        <ion-input class="label-value" #outputSubnetCalculatorUsableHosts disabled="true"></ion-input>
       </div>
     </ion-item>
-    <ion-item lines="none" class="center-content">
-      <ion-button fill="outline" slot="start" (click)="CalculateSubnet();">Calculate</ion-button>
-      <ion-button fill="outline" slot="end" color="danger" (click)="ClearCalculateSubnet();">Reset</ion-button>
+    <ion-item lines="none" class="center-content btn-container">
+      <ion-button mode="ios" class="btn-class" fill="outline" shape="round" slot="start" (click)="CalculateSubnet();">
+        Calculate</ion-button>
+      <ion-button mode="ios" class="btn-class" fill="outline" shape="round" slot="end" color="danger"
+        (click)="ClearCalculateSubnet();">Reset</ion-button>
     </ion-item>
   </ion-card>
 
   <ion-card>
     <ion-item lines="none">
-      <ion-icon src="/assets/svg/binary.svg" slot="start"></ion-icon>
-      <ion-label class="label-bold">Binary Address Converter</ion-label>
+      <ion-icon class="tool-icon" src="/assets/svg/binary.svg" slot="start"></ion-icon>
+      <ion-label class="label-title label-bold">Address Converter</ion-label>
     </ion-item>
     <ion-item lines="none">
-      <ion-label position="stacked">IPv4 Address</ion-label>
-      <ion-input #inputBinaryConverter placeholder='xxx.xxx.xxx.xxx'></ion-input>
-      <ion-label position="stacked">Binary Address</ion-label>
-      <ion-input #outputBinaryConverter disabled="true" placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'></ion-input>
+      <ion-label position="stacked" class="label-subtitle">IPv4 Address</ion-label>
+      <ion-input class="label-value" #inputBinaryConverter placeholder='xxx.xxx.xxx.xxx'
+        (keyup.enter)="CloseKeyboard()"></ion-input>
+
+
+      <ion-label position="stacked" class="label-subtitle">Binary Address</ion-label>
+      <ion-input class="label-value" #outputBinaryConverter disabled="true"
+        placeholder='xxxxxxxx.xxxxxxxx.xxxxxxxx.xxxxxxxx'>
+      </ion-input>
     </ion-item>
-    <ion-item lines="none" class="center-content">
-      <ion-button fill="outline" slot="start" (click)="Convert2Binary();">Convert</ion-button>
-      <ion-button fill="outline" slot="end" color="danger" (click)="ClearConvert2Binary();">Reset</ion-button>
+    <ion-item lines="none" class="center-content btn-container">
+      <ion-button mode="ios" class="btn-class" fill="outline" shape="round" slot="start" (click)="Convert2Binary();">
+        Convert</ion-button>
+      <ion-icon color="primary" name="eye" (click)="ShowDetailBinary();" style="margin-left: auto; margin-right: auto;"
+        *ngIf="showDetailButton"></ion-icon>
+      <ion-button mode="ios" class="btn-class" fill="outline" shape="round" slot="end" color="danger"
+        (click)="ClearConvert2Binary();">Reset</ion-button>
     </ion-item>
   </ion-card>
 
   <ion-card>
     <ion-item lines="none">
-      <ion-icon src="/assets/svg/mask1.svg" slot="start"></ion-icon>
-      <ion-label class="label-bold">CIDR 2 Netmask Converter</ion-label>
+      <ion-icon class="tool-icon" src="/assets/svg/mask1.svg" slot="start"></ion-icon>
+      <ion-label class="label-title label-bold">CIDR 2 Netmask</ion-label>
     </ion-item>
     <ion-item lines="none">
-      <ion-label position="stacked">CIDR Notation</ion-label>
-      <ion-input #inputCidrConverter placeholder='/xx'></ion-input>
-      <ion-label position="stacked">Subnet Mask</ion-label>
-      <ion-input #outputCidrConverter disabled="true" placeholder='xxx.xxx.xxx.xxx'></ion-input>
-      <ion-label position="stacked">Wildcard</ion-label>
-      <ion-input #outputCidrConverterWildcard disabled="true" placeholder='xxx.xxx.xxx.xxx'></ion-input>
+      <ion-label position="stacked" class="label-subtitle">CIDR Notation</ion-label>
+      <ion-input class="label-value" #inputCidrConverter placeholder='/xx' (keyup.enter)="CloseKeyboard()"></ion-input>
+      <ion-label position="stacked" class="label-subtitle">Subnet Mask</ion-label>
+      <ion-input class="label-value" #outputCidrConverter disabled="true" placeholder='xxx.xxx.xxx.xxx'></ion-input>
+      <ion-label position="stacked" class="label-subtitle">Wildcard</ion-label>
+      <ion-input class="label-value" #outputCidrConverterWildcard disabled="true" placeholder='xxx.xxx.xxx.xxx'>
+      </ion-input>
     </ion-item>
-    <ion-item lines="none" class="center-content">
-      <ion-button fill="outline" slot="start" (click)="ConvertCidr2Netmask();">Convert</ion-button>
-      <ion-button fill="outline" slot="end" color="danger" (click)="ClearConvertCidr2Netmask();">Reset</ion-button>
+    <ion-item lines="none" class="center-content btn-container">
+      <ion-button mode="ios" class="btn-class" fill="outline" shape="round" slot="start"
+        (click)="ConvertCidr2Netmask();">Convert</ion-button>
+      <ion-button mode="ios" class="btn-class" fill="outline" shape="round" slot="end" color="danger"
+        (click)="ClearConvertCidr2Netmask();">Reset</ion-button>
     </ion-item>
   </ion-card>
 
   <ion-card>
     <ion-item lines="none">
-      <ion-icon src="/assets/svg/mask2.svg" slot="start"></ion-icon>
-      <ion-label class="label-bold">Netmask 2 CIDR Converter</ion-label>
+      <ion-icon class="tool-icon" src="/assets/svg/mask2.svg" slot="start"></ion-icon>
+      <ion-label class="label-title label-bold">Netmask 2 CIDR</ion-label>
     </ion-item>
     <ion-item lines="none">
-      <ion-label position="stacked">Subnet Mask</ion-label>
-      <ion-input #inputMaskConverter placeholder='xxx.xxx.xxx.xxx'></ion-input>
-      <ion-label position="stacked">CIDR Notation</ion-label>
-      <ion-input #outputMaskConverter disabled="true" placeholder='/xx'></ion-input>
-      <ion-label position="stacked">Wildcard</ion-label>
-      <ion-input #outputMaskConverterWildcard disabled="true" placeholder='xxx.xxx.xxx.xxx'></ion-input>
+      <ion-label position="stacked" class="label-subtitle">Subnet Mask</ion-label>
+      <ion-input class="label-value" #inputMaskConverter placeholder='xxx.xxx.xxx.xxx' (keyup.enter)="CloseKeyboard()">
+      </ion-input>
+      <ion-label position="stacked" class="label-subtitle">CIDR Notation</ion-label>
+      <ion-input class="label-value" #outputMaskConverter disabled="true" placeholder='/xx'></ion-input>
+      <ion-label position="stacked" class="label-subtitle">Wildcard</ion-label>
+      <ion-input class="label-value" #outputMaskConverterWildcard disabled="true" placeholder='xxx.xxx.xxx.xxx'>
+      </ion-input>
     </ion-item>
-    <ion-item lines="none" class="center-content">
-      <ion-button fill="outline" slot="start" (click)="ConvertNetmask2Cidr();">Convert</ion-button>
-      <ion-button fill="outline" slot="end" color="danger" (click)="ClearConvertNetmask2Cidr();">Reset</ion-button>
+    <ion-item lines="none" class="center-content btn-container">
+      <ion-button mode="ios" class="btn-class" fill="outline" shape="round" slot="start"
+        (click)="ConvertNetmask2Cidr();">Convert</ion-button>
+      <ion-button mode="ios" class="btn-class" fill="outline" shape="round" slot="end" color="danger"
+        (click)="ClearConvertNetmask2Cidr();">Reset</ion-button>
     </ion-item>
   </ion-card>
 
+  <ion-grid class="center-grid">
+    <ion-row text-center>
+      <ion-col>
+        <ion-chip color="primary">
+          <ion-icon name="flask-sharp" color="primary"></ion-icon>
+          <ion-label>More to come...</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

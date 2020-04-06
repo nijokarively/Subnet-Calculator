@@ -1,6 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { NetworkService } from '../services/network-service.service';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { AlertController } from '@ionic/angular';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -8,9 +11,6 @@ import { NetworkService } from '../services/network-service.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-
-  constructor(public toastController: ToastController, private networkService: NetworkService) { }
-
   @ViewChild('inputSubnetCalculatorAddress', { read: ElementRef, static: false }) inputSubnetCalculatorAddress: ElementRef;
   @ViewChild('inputSubnetCalculatorCidr', { read: ElementRef, static: false }) inputSubnetCalculatorCidr: ElementRef;
   @ViewChild('outputSubnetCalculatorNetmask', { read: ElementRef, static: false }) outputSubnetCalculatorNetmask: ElementRef;
@@ -31,6 +31,30 @@ export class Tab1Page {
   @ViewChild('outputSubnetCalculatorUsableHosts', { read: ElementRef, static: false }) outputSubnetCalculatorUsableHosts: ElementRef;
 
   private showSubnetResults: any;
+  private showDetailButton = false;
+
+  keyboardStyle = { width: '100%', height: '0px' };
+
+  constructor(public toastController: ToastController, private networkService: NetworkService, private keyboard: Keyboard, public alertController: AlertController, private screenOrientation: ScreenOrientation) {
+
+    // this.keyboard.onKeyboardWillShow().subscribe( {
+    //   next: x => {
+    //     this.keyboardStyle.height = x.keyboardHeight + 'px';
+    //   },
+    //   error: e => {
+    //     console.log(e);
+    //   }
+    // });
+    // this.keyboard.onKeyboardWillHide().subscribe( {
+    //   next: x => {
+    //     this.keyboardStyle.height = '0px';
+    //   },
+    //   error: e => {
+    //     console.log(e);
+    //   }
+    // });
+
+   }
 
   ionViewWillEnter() {
   }
@@ -47,9 +71,51 @@ export class Tab1Page {
     console.log(msg);
     const toast = await this.toastController.create({
       message: msg,
-      duration: 2000
+      duration: 2000,
+      cssClass: 'super-toast',
+      keyboardClose: true,
     });
     toast.present();
+  }
+
+  async createAlert(title, msg) {
+    const alert = await this.alertController.create({
+      header: title,
+      message: msg,
+      buttons: ['Close']
+    });
+
+    await alert.present();
+  }
+
+  ShowDetailBinary(){
+    const binaryAddress = this.outputBinaryConverter.nativeElement.value;
+    this.createAlert("Binary Address", binaryAddress);
+
+  }
+
+  // public focusInput (event): void {
+  //   let total = 0;
+  //   let container = null;
+
+  //   const _rec = (obj) => {
+
+  //       total += obj.offsetTop;
+  //       const par = obj.offsetParent;
+  //       if (par && par.localName !== 'ion-content') {
+  //           _rec(par);
+  //       } else {
+  //           container = par;
+  //       }
+  //   };
+  //   _rec(event.target);
+  //   setTimeout(() => {
+  //     container.scrollToPoint(0, total - 50, 400);
+  //   }, 500);
+  // }
+
+  CloseKeyboard(){
+    this.keyboard.hide();
   }
 
   ClearInputs() {
@@ -76,6 +142,7 @@ export class Tab1Page {
   ClearConvert2Binary() {
     this.inputBinaryConverter.nativeElement.value = '';
     this.outputBinaryConverter.nativeElement.value = '';
+    this.showDetailButton = false;
   }
 
   ClearConvertCidr2Netmask() {
@@ -144,6 +211,9 @@ export class Tab1Page {
       });
       const binaryAddress = binaryOctects.join('.');
       this.outputBinaryConverter.nativeElement.value = binaryAddress;
+      if (this.screenOrientation.type == 'portrait-primary'){
+        this.showDetailButton = true;
+      };
     } else {
       this.createToast("You have entered an invalid IP address!");
     }
@@ -162,7 +232,7 @@ export class Tab1Page {
 
   ConvertNetmask2Cidr() {
     const inputAddress = this.inputMaskConverter.nativeElement.value;
-    if (this.ValidateIpAddress(inputAddress)) {
+    if (this.ValidateNetMask(inputAddress)) {
       const subnet = this.networkService.getSubnetByNetmask(inputAddress);
       this.outputMaskConverter.nativeElement.value = subnet.cidr;
       this.outputMaskConverterWildcard.nativeElement.value = subnet.wildcard;
@@ -180,6 +250,13 @@ export class Tab1Page {
 
   ValidateIpAddress(ipAddress) {
     if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipAddress)) {
+      return (true)
+    }
+    return (false)
+  }
+
+  ValidateNetMask(ipAddress) {
+    if (/^(((255\.){3}(255|254|252|248|240|224|192|128|0+))|((255\.){2}(255|254|252|248|240|224|192|128|0+)\.0)|((255\.)(255|254|252|248|240|224|192|128|0+)(\.0+){2})|((255|254|252|248|240|224|192|128|0+)(\.0+){3}))$/.test(ipAddress)) {
       return (true)
     }
     return (false)

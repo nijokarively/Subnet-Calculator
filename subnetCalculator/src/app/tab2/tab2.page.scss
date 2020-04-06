@@ -1,3 +1,23 @@
 ion-content ion-toolbar {
   --background: translucent;
 }
+
+.label-title {
+  font-size:1.3rem;
+}
+
+.label-title-small {
+  font-size:1.1rem;
+}
+
+.label-subtitle {
+  font-size:.9rem;
+}
+
+.label-value {
+  font-size:1.1rem;
+}
+
+.label-bold {
+  font-weight: bold;
+}

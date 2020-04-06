@@ -34,6 +34,11 @@
                 "glob": "**/*.svg",
                 "input": "src/assets/svg",
                 "output": "./svg"
+              },
+              {
+                "glob": "**/*.png",
+                "input": "src/assets/img",
+                "output": "./png"
               }
             ],
             "styles": [

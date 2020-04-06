@@ -10,10 +10,57 @@ ion-content ion-toolbar {
   margin: 0 auto !important;
 }
 
+.chip-container {
+  margin-bottom:.125rem;
+}
+
 .hide {
   display: none;
 }
 
 .show {
   display: block;
+}
+
+.tool-icon {
+  zoom:2.0; 
+  margin-top: 1rem !important;
+}
+
+.btn-class {
+  width:7.25rem;
+  height:2.25rem;
+  font-size: 1.1rem !important;
+}
+
+.btn-container{
+  margin-bottom: 1rem !important;
+}
+
+.label-title {
+  font-size:1.3rem;
+}
+
+.label-title-small {
+  font-size:1.2rem;
+}
+
+.label-subtitle {
+  font-size:1.3rem;
+}
+
+.label-value {
+  font-size:1.4rem;
+}
+
+.label-value-small {
+  font-size:1.2rem;
+}
+
+.label-value-small:disabled {
+  font-size:1.2rem;
+}
+
+.label-bold {
+  font-weight: bold;
 }
