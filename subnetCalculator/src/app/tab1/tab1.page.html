@@ -7,13 +7,18 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item lines="none">
-    <ion-icon slot="start"></ion-icon>
-    <ion-chip color="primary">
-      <ion-icon name="reload" color="primary"></ion-icon>
-      <ion-label>Rotate screen if data gets cut off</ion-label>
-    </ion-chip>
-  </ion-item>
+  <ion-grid class="center-grid">
+    <ion-row text-center>
+      <ion-col>
+        <ion-item lines="none">
+          <ion-chip color="primary">
+            <ion-icon name="reload" color="primary"></ion-icon>
+            <ion-label>Rotate screen if data gets cut off</ion-label>
+          </ion-chip>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <ion-card>
     <ion-item lines="none">
@@ -125,11 +130,17 @@
         (click)="ClearConvertNetmask2Cidr();">Reset</ion-button>
     </ion-item>
   </ion-card>
-  <ion-item lines="none" class="chip-container">
-    <ion-icon style="zoom:2;" slot="start"></ion-icon>
-    <ion-chip color="primary">
-      <ion-icon name="flask-sharp" color="primary"></ion-icon>
-      <ion-label>More to come...</ion-label>
-    </ion-chip>
-  </ion-item>
+
+  <ion-grid class="center-grid">
+    <ion-row text-center>
+      <ion-col>
+        <ion-item lines="none" class="chip-container">
+          <ion-chip color="primary">
+            <ion-icon name="flask-sharp" color="primary"></ion-icon>
+            <ion-label>More to come...</ion-label>
+          </ion-chip>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

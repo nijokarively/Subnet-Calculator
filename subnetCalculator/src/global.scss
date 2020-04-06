@@ -32,6 +32,12 @@
     transform: translate(-3%,-50%);
 }
 
+.center-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 ion-item:last-child {
     --border-style: none;
     --border-width: 0 0 0 0;
